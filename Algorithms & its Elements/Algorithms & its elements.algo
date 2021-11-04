@@ -1,0 +1,15 @@
+ALGORITHM checkpoint
+VAR 
+ nch, nw, nv: INTEGER:=0;
+ ch: CHAR;
+BEGIN
+  read (ch);
+  while (ch<>'.'){
+    nch++;
+    if (ch=' ') {nw++}
+    if ( ('AEOUIY').includes (ch.toUpperCase())) {nv++}
+  }
+  write ('Length of the sentence is:' , nch);
+  write ('nb of words in the sentence is:' , nw);
+  write ('nb of vowels in the sentence is:' , nv);
+END

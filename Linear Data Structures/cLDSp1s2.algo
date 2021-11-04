@@ -1,0 +1,47 @@
+ALGORITHM cLDSp1s2.better_approach
+VAR
+    s1,s2 : ARRAY_OF INTEGER[10];
+    skeys : ARRAY_OF INTEGER[20];
+    Htab := HASH_TABLE<INTEGER,INTEGER>; // HASH_TABLE<Key_type,Value_type>
+    i, count : INTEGER;
+    sum : INTEGER := 0;
+BEGIN
+ //P1: Given two sets of el, find sum of overlapping elements in two sets(no duplicates within a set).
+  //S2:type Hash Table:
+   //Inserting and reading Elements in the two sets.
+   FOR i FROM 0 TO s1.length-1 STEP 1 DO
+      Write ('Enter set 1:', i);
+      Read (s1[i]);
+   END_FOR
+   FOR i FROM 0 TO s2.length-1 STEP 1 DO
+      Write ('Enter set 2:', j);
+      Read (s2[i]);
+   END_FOR
+
+    // Insert all the el from both the sets with the el as key and its count (in both arrays).
+    FOR i FROM 0 TO s1.length-1 STEP 2  DO
+        IF (Htab.lookup(s1[i]) = TRUE) THEN
+            count := Htab.get(s1[i]);
+            Htab.insert(s1[i],count+1);
+        ELSE
+            Htab.insert(s1[i],1);
+        END_IF
+    END_FOR
+    FOR i FROM 0 TO s2.length-1 STEP 2  DO
+        IF (Htab.lookup(s2[i]) = TRUE) THEN
+            count := Htab.get(s2[i]);
+            Htab.insert(s2[i],count+1);
+        ELSE
+            Htab.insert(s2[i],1);
+        END_IF
+    END_FOR
+    //get sum of distinct elements
+    skeys := Htab.getKeys();
+    FOR i FROM 0 TO skeys.length-1 STEP 3  DO
+        IF (Htab.get(skeys[i]) = 1) THEN
+            sum := sum +skeys[i];
+        END_IF
+    END_FOR
+    // Display the sum.
+    Write('Sum =', sum);
+END
